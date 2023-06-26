@@ -380,13 +380,26 @@ public class Main {
 //        }
     }
 
+    public double hitungJarak(Player player, Object object){
+        double jarak = Math.sqrt(Math.pow(player.updateCenterPoint().x-object.updateCenterPoint().x,2) + Math.pow(player.updateCenterPoint().y - object.updateCenterPoint().y,2) + Math.pow(player.updateCenterPoint().z-object.updateCenterPoint().z,2));
+        System.out.println(jarak);
+        return jarak;
+    }
+    public double hitungJarak(Player player, float x, float y ,float z){
+        double jarak = Math.sqrt(Math.pow(player.updateCenterPoint().x-x,2) + Math.pow(player.updateCenterPoint().y - y,2) + Math.pow(player.updateCenterPoint().z-z,2));
+        System.out.println(jarak);
+        return jarak;
+    }
+
     public void input(){
         if (window.isKeyPressed(GLFW_KEY_P)){
             for (int i = 1; i < objects.size(); i++) {
                 System.out.println(i);
-                System.out.println(objects.get(i).minAABB);
-                System.out.println(objects.get(i).maxAABB);
-                System.out.println(player.checkCollision(objects.get(i)));
+//                System.out.println(objects.get(i).minAABB);
+//                System.out.println(objects.get(i).maxAABB);
+//                System.out.println(player.checkCollision(objects.get(i)));
+//                objects.get(i).check();
+                hitungJarak(player, objects.get(i));
             }
         }
 
@@ -399,11 +412,67 @@ public class Main {
         }
         if (freeCamera) {
             if (window.isKeyPressed(GLFW_KEY_W)){
+                boolean tabrakan = false;
                 float distance = 1.5f * 0.01f;
                 float dx = (float) (distance * Math.sin(Math.toRadians(player.rotation.y)));
                 float dz = (float) (distance * Math.cos(Math.toRadians(player.rotation.y)));
+                for (int i = 1; i < objects.size(); i++) {
+                    System.out.println(i);
+                    double jarak = hitungJarak(player, objects.get(i));
+                    if (jarak < 0.1){
+
+                        tabrakan = true;
+                        System.out.println(player.updateCenterPoint());
+                        break;
+                    }
+
+                }
+//                if (hitungJarak(player, -0.71932685f, 0.08f, 0.8278946f)< 0.1f){
+//                    tabrakan = true;
+//                }
+                if (hitungJarak(player, 0.86570966f, 0.08f, 0.41891587f)< 0.1f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, 0.412035f, 0.08f, 0.01860947f)< 0.1f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, -0.081637f,0.08f, 0.14620565f)< 0.3f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player,-0.547387f, 0.08f, 0.061964333f) < 0.1f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player,0.3629737f, 0.08f, -0.64105624f) < 0.1f){
+                    tabrakan = true;
+                }
+
+                if (hitungJarak(player, 0.3629737f, 0.08f, -0.64105624f) < 0.1f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, -0.7275573f,
+                        0.08f,
+                        0.93467164f) < 0.35f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, -0.7246517f,
+                        0.08f,
+                        0.5620436f) < 0.35f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, -0.71047264f,
+                        0.08f,
+                        -0.9655723f) < 0.12f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, -0.20146474f,
+                        0.08f,
+                        -0.8013653f) < 0.1){
+                    tabrakan = true;
+                }
+                if (!tabrakan){
                 player.translateObject(dx * 0.1f, 0f, dz * 0.1f);
                 third.setPosition(third.getPosition().x + dx * 0.1f, third.getPosition().y +0f, third.getPosition().z + dz * 0.1f);
+                }
             }
             if (window.isKeyPressed(GLFW_KEY_S)){
                 float distance = -1.5f * 0.01f;
@@ -501,18 +570,71 @@ public class Main {
                 float distance = 1.5f * 0.03f;
                 float dx = (float) (distance * Math.sin(Math.toRadians(player.rotation.y)));
                 float dz = (float) (distance * Math.cos(Math.toRadians(player.rotation.y)));
-//                for (int i = 1; i < objects.size(); i++) {
-//                    System.out.println(i);
-//                    System.out.println(objects.get(i).minAABB);
-//                    System.out.println(objects.get(i).maxAABB);
-//                    if (player.checkCollision(objects.get(i))){
-//                        tabrakan = true;
-//                    }
+                Vector3f temp = player.updateCenterPoint();
+                for (int i = 1; i < objects.size(); i++) {
+                    System.out.println(i);
+                    double jarak = hitungJarak(player, objects.get(i));
+                    if (jarak < 0.1){
+
+                        tabrakan = true;
+                        System.out.println(player.updateCenterPoint());
+                        break;
+                    }
+
+                }
+//                if (hitungJarak(player, -0.71932685f, 0.08f, 0.8278946f)< 0.1f){
+//                    tabrakan = true;
 //                }
-//                if (!tabrakan) {
+                if (hitungJarak(player, 0.86570966f, 0.08f, 0.41891587f)< 0.1f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, 0.412035f, 0.08f, 0.01860947f)< 0.1f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, -0.081637f,0.08f, 0.14620565f)< 0.3f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player,-0.547387f, 0.08f, 0.061964333f) < 0.1f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player,0.3629737f, 0.08f, -0.64105624f) < 0.1f){
+                    tabrakan = true;
+                }
+
+                if (hitungJarak(player, 0.3629737f, 0.08f, -0.64105624f) < 0.1f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, -0.7275573f,
+                0.08f,
+                0.93467164f) < 0.35f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, -0.7246517f,
+                0.08f,
+                0.5620436f) < 0.35f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, -0.71047264f,
+                0.08f,
+                        -0.9655723f) < 0.12f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, -0.20146474f,
+                        0.08f,
+                        -0.8013653f) < 0.1){
+                    tabrakan = true;
+                }
+
+
+
+
+
+
+//                System.out.println(tabrakan);
+                if (!tabrakan) {
                     player.translateObject(dx * 0.03f, 0f, dz * 0.03f);
                     first.setPosition(first.getPosition().x + dx * 0.03f, first.getPosition().y + 0f, first.getPosition().z + dz * 0.03f);
-//                }
+                }
             }
             if (window.isKeyPressed(GLFW_KEY_S)){
                 float distance = -1.5f * 0.03f;
@@ -589,18 +711,63 @@ public class Main {
                 float distance = 1.5f * 0.01f;
                 float dx = (float) (distance * Math.sin(Math.toRadians(player.rotation.y)));
                 float dz = (float) (distance * Math.cos(Math.toRadians(player.rotation.y)));
-//                for (int i = 1; i < objects.size(); i++) {
-//                    System.out.println(i);
-//                    System.out.println(objects.get(i).minAABB);
-//                    System.out.println(objects.get(i).maxAABB);
-//                    if (player.checkCollision(objects.get(i))){
-//                        tabrakan = true;
-//                    }
-//                }
-//                if (!tabrakan){
+                Vector3f playerPos = player.updateCenterPoint();
+                Matrix4f model = new Matrix4f(player.model);
+                for (int i = 1; i < objects.size(); i++) {
+                    System.out.println(i);
+                    System.out.println(objects.get(i).updateCenterPoint().x);
+                    System.out.println(objects.get(i).updateCenterPoint().y);
+                    System.out.println(objects.get(i).updateCenterPoint().z);
+                    double jarak = hitungJarak(player, objects.get(i));
+                    if (jarak < 0.1){
+                        tabrakan = true;
+                    }
+
+                }
+                if (hitungJarak(player, 0.86570966f, 0.08f, 0.41891587f)< 0.1f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, 0.412035f, 0.08f, 0.01860947f)< 0.1f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, -0.081637f,0.08f, 0.14620565f)< 0.3f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player,-0.547387f, 0.08f, 0.061964333f) < 0.1f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player,0.3629737f, 0.08f, -0.64105624f) < 0.1f){
+                    tabrakan = true;
+                }
+
+                if (hitungJarak(player, 0.3629737f, 0.08f, -0.64105624f) < 0.1f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, -0.7275573f,
+                        0.08f,
+                        0.93467164f) < 0.35f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, -0.7246517f,
+                        0.08f,
+                        0.5620436f) < 0.35f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, -0.71047264f,
+                        0.08f,
+                        -0.9655723f) < 0.12f){
+                    tabrakan = true;
+                }
+                if (hitungJarak(player, -0.20146474f,
+                0.08f,
+                        -0.8013653f) < 0.1){
+                    tabrakan = true;
+                }
+//                if
+                if (!tabrakan){
                     player.translateObject(dx * 0.1f, 0f, dz * 0.1f);
                     third.setPosition(third.getPosition().x + dx * 0.1f, third.getPosition().y +0f, third.getPosition().z + dz * 0.1f);
-//                }
+                }
 
             }
             if (window.isKeyPressed(GLFW_KEY_S)){
