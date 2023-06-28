@@ -8,5 +8,5 @@ Proyek UAS Grafkom
 + Nathan Erens Anderson / c14210131
 
 + Link laporan:  https://docs.google.com/document/d/1PQkQVonO_4kC4ih2_bpHYVkdTF3IRwiG3OXb55zbsSU/edit?usp=sharing
-+ Link Video : https://www.youtube.com/watch?v=2XHkRvzC86g
++ Link Video : https://youtu.be/vStq8tVomQk
 + Notes : saat upload ke github tadi mungkin ada pathnya yang berubah karena tidak bisa diupload sekalian
